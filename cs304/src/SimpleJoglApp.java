@@ -44,7 +44,8 @@ public class SimpleJoglApp extends JFrame {
         //center the JFrame on the screen
         centerWindow();
         setVisible(true);
-
+        setResizable(false);
+        
     }
 
     public void paint(Graphics g){
