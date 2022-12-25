@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.Panel;
 
 public class DrawGraphic extends Panel {
+    private int score = 0;
     private int hockx =200;
     private int ballx=200;
     private int bally=200;
@@ -25,5 +26,10 @@ public class DrawGraphic extends Panel {
        //ball
         g.setColor(Color.YELLOW);
         g.fillOval(ballx,bally,20,20);
+        
+        //score
+         g.setColor(Color.white);
+        g.setFont(new Font("serif",Font.BOLD, 25));
+        g.drawString(""+score, 590,30);
     }
 }
