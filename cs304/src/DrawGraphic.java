@@ -29,7 +29,7 @@ public class DrawGraphic extends Panel {
         
         //score
          g.setColor(Color.white);
-        g.setFont(new Font("serif",Font.BOLD, 25));
+        g.setFont(new Font("script",Font.BOLD, 25));
         g.drawString(""+score, 590,30);
     }
 }
