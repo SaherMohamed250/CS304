@@ -48,13 +48,6 @@ public class SimpleJoglApp extends JFrame {
         
     }
 
-    public void paint(Graphics g){
-        g.setColor(Color.yellow);
-        g.fillRect(0, 0, 3, 592);
-        g.fillRect(0, 0, 692, 3);
-        g.fillRect(691, 0, 3, 592);
-    }
-
     public void centerWindow() {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension frameSize  = this.getSize();
