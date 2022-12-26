@@ -92,10 +92,44 @@ public class DrawGraphic extends JPanel implements KeyListener, ActionListener {
     }
     @Override
     public void keyTyped(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_6) {
+            if (hockx > 580) {
+                hockx =580;
+            } else {
+                play = true;
+                hockx += 10;
+            }
+        }
+        if (e.getKeyCode() == KeyEvent.VK_4) {
+            if (hockx < 10) {
+                hockx = 10;
+            } else {
+                play = true;
+                hockx -= 10;
+            }
+            repaint();
+        }
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
+            if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+            if (hockx > 580) {
+                hockx = 580;
+            } else {
+                play = true;
+                hockx += 10;
+            }
+        }
+        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+            if (hockx < 10) {
+                hockx = 10;
+            } else {
+                play = true;
+                hockx -= 10;
+            }
+            repaint();
+        }
     }
 
     @Override
