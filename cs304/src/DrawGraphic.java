@@ -154,7 +154,6 @@ public class DrawGraphic extends JPanel implements KeyListener, ActionListener ,
         double x = e.getX();
         Component c = e.getComponent();
         double width = c.getWidth();
-        double height = c.getHeight();
         hockx = (int) ((x / width) * 580);
         repaint();
     }
