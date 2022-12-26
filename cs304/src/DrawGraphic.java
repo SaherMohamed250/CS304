@@ -29,7 +29,7 @@ public class DrawGraphic extends JPanel implements KeyListener ,ActionListener{
         g.fillRect(hockx,550,100,8);
         
         //coloerd the blocks
-        mapPlay.draw((Graphics) graphics, Color.yellow);
+        mapPlay.draw((Graphics) graphics, Color.white);
        //ball
         g.setColor(Color.YELLOW);
         g.fillOval(ballx,bally,20,20);
