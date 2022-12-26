@@ -29,7 +29,7 @@ public class DrawGraphic extends JPanel implements KeyListener ,ActionListener{
         g.fillRect(hockx,550,100,8);
         
         //coloerd the blocks
-        mapPlay.draw((Graphics) graphics, Color.white);
+        mapPlay.draw((Graphics) g, Color.white);
        //ball
         g.setColor(Color.YELLOW);
         g.fillOval(ballx,bally,20,20);
@@ -54,8 +54,8 @@ public class DrawGraphic extends JPanel implements KeyListener ,ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (play) {
- //to show the blocks 
-           
+ 
+   //to show the blocks   
             for (int i = 0; i < mapPlay.map.length; i++) {
                 for (int j = 0; j < mapPlay.map[i].length; j++) {
                     if (mapPlay.map[i][j] > 0) {
