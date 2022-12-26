@@ -8,7 +8,7 @@ import java.awt.event.KeyListener;
 
 public class DrawGraphic extends JPanel implements KeyListener, ActionListener {
     private int score = 0;
-    private int ballx,bally,x1,y1,bounds=30;
+    private int ballx,bally,bounds=30;
     private boolean move_up,move_left,move_dawn,move_right;
 
     private int hockx =200;
@@ -32,8 +32,8 @@ public class DrawGraphic extends JPanel implements KeyListener, ActionListener {
                 } else {
                     ballx += a;
                 }
-                if (bally > getHeight() - bounds-10) {
-                    move_up = true;
+                if (bally > getHeight() - bounds) {
+                    move_up = false;
                 }
                 if (bally < 0) {
                     move_up = false;
