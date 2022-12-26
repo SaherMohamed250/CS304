@@ -15,6 +15,7 @@ public class SimpleJoglApp {
         j.setVisible(true);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.add(draw);
+        j.addKeyListener(draw);
         j.setVisible(true);
     }
 
