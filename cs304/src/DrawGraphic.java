@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class DrawGraphic extends JPanel implements KeyListener ,ActionListener{
+public class DrawGraphic extends Panel implements KeyListener ,ActionListener{
     private int score = 0;
     private int hockx =200;
     private int ballx=200;
