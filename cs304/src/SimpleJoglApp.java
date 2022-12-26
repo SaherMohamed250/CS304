@@ -23,5 +23,5 @@ public class SimpleJoglApp {
         j.add(draw);
         j.setVisible(true);
     }
-
+}
    
