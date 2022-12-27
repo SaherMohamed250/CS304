@@ -14,7 +14,6 @@ public class  Menu extends JFrame implements ActionListener {
     private JButton instButton =new JButton("Instructions");
     private JButton exitButton =new JButton("Exit");
     JLabel displayField ;
-    int score= 5;
     
      
     
@@ -63,11 +62,10 @@ public class  Menu extends JFrame implements ActionListener {
       
         //when this is called the button is clicked it's going to get wherever that click was from 
         if(e.getSource()==startButton){
-            new gameScreen();
+            new DrawGraphic();
             this.dispose(); // it's means give up resources of the frame 
         }
         if(e.getSource()==exitButton){
-            System.out.print("YOUR SCORE");
             System.exit(score);
             this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         }
