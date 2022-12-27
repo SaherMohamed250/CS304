@@ -48,5 +48,9 @@ public class Blocks {
             }
         }
     }
+ //to claculate number of brick blocks
+    public void setBrickValue(int value, int row, int col) {
+        map[row][col] = value;
+    }
 
 }
