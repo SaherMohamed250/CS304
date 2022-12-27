@@ -7,16 +7,16 @@ public class DrawGraphic extends JPanel implements KeyListener, ActionListener ,
     private int score = 0;
     private int ballx,bally,bounds=30;
     private boolean move_up,move_left,move_dawn,move_right;
-
     private int hockx =200;
-
     private boolean play=false;
     private Blocks mapPlay;
     private int totalBricks = 40;
-    private int ballPosX = 290;
-    private int ballPosY = 350;
-    private int ballDirX = 60;
-    private int ballDirY = 80();
+    private int ballxd = -1;
+    private int ballyd = -2;
+    private Timer timer;
+    private int delay =1;
+    
+    
     public DrawGraphic(int a, int b) {
         Timer timer = new Timer(5, new ActionListener() {
             //bouncing ball
@@ -67,8 +67,7 @@ public class DrawGraphic extends JPanel implements KeyListener, ActionListener ,
         Graphics2D g5 = (Graphics2D) g;
 
             super.paint(g1);
-        //create blocks
-        mapPlay = new Blocks(5, 10);
+        
         //Border
         g2.setColor(Color.blue);
         g2.fillRect(0, 0, 3, 592);
@@ -81,7 +80,7 @@ public class DrawGraphic extends JPanel implements KeyListener, ActionListener ,
         g3.fillRect(hockx,550,100,8);
 
         //coloerd the blocks
-        mapPlay.draw((Graphics) g, Color.white);
+        mapPlay.draw((Graphics2D) g, Color.white);
 
         //ball
         g1.setColor(Color.blue);
@@ -91,6 +90,7 @@ public class DrawGraphic extends JPanel implements KeyListener, ActionListener ,
         g4.setColor(Color.white);
         g4.setFont(new Font("script",Font.BOLD, 25));
         g4.drawString(""+score, 590,30);
+        
     }
     @Override
     public void keyTyped(KeyEvent e) {
@@ -130,8 +130,12 @@ public class DrawGraphic extends JPanel implements KeyListener, ActionListener ,
                 play = true;
                 hockx -= 10;
             }
-            repaint();
+         }
+          if (e.getKeyCode()==(KeyEvent.VK_P)) {
+            play=false;
         }
+          repaint();
+        
     }
 
     @Override
@@ -140,25 +144,41 @@ public class DrawGraphic extends JPanel implements KeyListener, ActionListener ,
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (play) {
-
-            //to show the blocks
-            for (int i = 0; i < mapPlay.map.length; i++) {
+       timer.start();
+       if (play) {
+       
+           //to show the blocks
+            A:for (int i = 0; i < mapPlay.map.length; i++) {
                 for (int j = 0; j < mapPlay.map[i].length; j++) {
                     if (mapPlay.map[i][j] > 0) {
                         
                         //hide the blocks
-                           int brickX = j * mapPlay.brickWidth + 80;
+                        int brickX = j * mapPlay.brickWidth + 80;
                         int brickY = i * mapPlay.brickHeight + 50;
-                          Rectangle rect = new Rectangle(brickX, brickY, mapPlay.brickWidth,mapPlay.brickHeight);
+                        int brickWidth = mapPlay.brickWidth;
+                        int brickHeight = mapPlay.brickHeight;
+                        Rectangle rect = new Rectangle(brickX, brickY, mapPlay.brickWidth,mapPlay.brickHeight);
                         Rectangle ballRect = new Rectangle(ballPosX, ballPosY, mapPlay.brickWidth,mapPlay.brickHeight);
                         if (ballRect.intersects(rect)) {
                             mapPlay.setBrickValue(0, i, j);
                             totalBricks--;
+                             // when ball hit right or left of brick
+                            if(ballx + 19 <= brickRect.x || ballx + 1 >= brickRect.x + brickRect.width)
+                            {
+                                ballxd = -ballxd;
+                            }
+                            // when ball hits top or bottom of brick
+                            else
+                            {
+                                ballyd = -ballyd;
+                            }
+
+                            break A;
                     }
                 }
             }
         }
+        repaint();
     }
     public void mouseDragged(MouseEvent e) {
     }
