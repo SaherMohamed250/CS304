@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class DrawGraphic extends JPanel implements KeyListener, ActionListener {
+public class DrawGraphic extends JPanel implements KeyListener, ActionListener, MouseMotionListener {
     private int score = 0;
     private int ballx,bally,bounds=30;
     private boolean move_up,move_left,move_dawn,move_right;
@@ -211,4 +211,16 @@ public class DrawGraphic extends JPanel implements KeyListener, ActionListener {
             repaint();
         }
     }
+     public void mouseDragged(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+        double x = e.getX();
+        Component c = e.getComponent();
+        double width = c.getWidth();
+        hockx = (int) ((x / width) * 580);
+        repaint();
+    }
+
 }
