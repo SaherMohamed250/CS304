@@ -161,12 +161,12 @@ public class DrawGraphic extends JPanel implements KeyListener, ActionListener ,
                         int brickWidth = mapPlay.brickWidth;
                         int brickHeight = mapPlay.brickHeight;
                         Rectangle rect = new Rectangle(brickX, brickY, mapPlay.brickWidth,mapPlay.brickHeight);
-                        Rectangle ballRect = new Rectangle(ballPosX, ballPosY, mapPlay.brickWidth,mapPlay.brickHeight);
+                        Rectangle ballRect = new Rectangle(ballx, bally, mapPlay.brickWidth,mapPlay.brickHeight);
                         if (ballRect.intersects(rect)) {
                             mapPlay.setBrickValue(0, i, j);
                             totalBricks--;
                              // when ball hit right or left of brick
-                            if(ballx + 19 <= brickRect.x || ballx + 1 >= brickRect.x + brickRect.width)
+                            if(ballx + 19 <= ballRect.x || ballx + 1 >= ballRect.x + ballRect.width)
                             {
                                 ballxd = -ballxd;
                             }
