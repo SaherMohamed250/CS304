@@ -135,7 +135,21 @@ public class DrawGraphic extends JPanel implements KeyListener, ActionListener ,
     public void actionPerformed(ActionEvent e) {
        timer.start();
        if (play) {
-       
+                   
+            if(new Rectangle(ballx, bally, 20, 20).intersects(new Rectangle(hockx, 550, 30, 8)))
+            {
+                ballyd = -ballyd;
+            }
+            else if(new Rectangle(ballx, bally, 20, 20).intersects(new Rectangle(hockx + 70, 550, 30, 8)))
+            {
+                ballyd = -ballyd;
+            }
+
+            else if(new Rectangle(ballx, bally, 20, 20).intersects(new Rectangle(hockx + 30, 550, 40, 8)))
+            {
+                ballyd = -ballyd;
+            }
+           
            //to show the blocks
             A:for (int i = 0; i < mapPlay.map.length; i++) {
                 for (int j = 0; j < mapPlay.map[i].length; j++) {
