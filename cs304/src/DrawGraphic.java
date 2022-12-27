@@ -12,7 +12,7 @@ public class DrawGraphic extends JPanel implements KeyListener, ActionListener ,
     private Blocks mapPlay;
     private int totalBricks = 40;
     private int ballxd = -1;
-    private int ballyd = -2;
+    private int ballyd = -4;
     private Timer timer;
     private int delay =1;
     
