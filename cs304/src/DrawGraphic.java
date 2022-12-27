@@ -12,6 +12,11 @@ public class DrawGraphic extends JPanel implements KeyListener, ActionListener ,
 
     private boolean play=false;
     private Blocks mapPlay;
+    private int totalBricks = 40;
+    private int ballPosX = 290;
+    private int ballPosY = 350;
+    private int ballDirX = 60;
+    private int ballDirY = 80();
     public DrawGraphic(int a, int b) {
         Timer timer = new Timer(5, new ActionListener() {
             //bouncing ball
@@ -141,6 +146,15 @@ public class DrawGraphic extends JPanel implements KeyListener, ActionListener ,
             for (int i = 0; i < mapPlay.map.length; i++) {
                 for (int j = 0; j < mapPlay.map[i].length; j++) {
                     if (mapPlay.map[i][j] > 0) {
+                        
+                        //hide the blocks
+                           int brickX = j * mapPlay.brickWidth + 80;
+                        int brickY = i * mapPlay.brickHeight + 50;
+                          Rectangle rect = new Rectangle(brickX, brickY, mapPlay.brickWidth,mapPlay.brickHeight);
+                        Rectangle ballRect = new Rectangle(ballPosX, ballPosY, mapPlay.brickWidth,mapPlay.brickHeight);
+                        if (ballRect.intersects(rect)) {
+                            mapPlay.setBrickValue(0, i, j);
+                            totalBricks--;
                     }
                 }
             }
