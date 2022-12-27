@@ -17,39 +17,12 @@ public class DrawGraphic extends JPanel implements KeyListener, ActionListener ,
     private int delay =1;
     
     
-    public DrawGraphic(int a, int b) {
-        Timer timer = new Timer(5, new ActionListener() {
-            //bouncing ball
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Math.random();
-                if (ballx > getWidth() - bounds-10) {
-                    move_left = true;
-                }
-                if (ballx < 0) {
-                    move_left = false;
-                }
-                if (move_left) {
-                    ballx -= a;
-                } else {
-                    ballx += a;
-                }
-                if (bally > getHeight() - bounds) {
-                    move_up = false;
-                }
-                if (bally < 0) {
-                    move_up = false;
-                }
-                if (move_up) {
-                    bally -= b;
-           }
-
-                else {
-                    bally += b;
-                }
-                repaint();
-            }
-        });
+    public DrawGraphic() {
+       mapPlay = new Blocks(5, 10);
+        addKeyListener(this);
+        setFocusable(true);
+        setFocusTraversalKeysEnabled(false);
+        timer=new Timer(delay,this);
         timer.start();
     }
 
@@ -174,7 +147,24 @@ public class DrawGraphic extends JPanel implements KeyListener, ActionListener ,
                 }
             }
         }
-        repaint();
+           ballx += ballxd;
+            bally += ballyd;
+
+            if(ballx < 0)
+            {
+                ballxd = -ballxd;
+            }
+            if(bally < 0)
+            {
+                ballyd = -ballyd;
+            }
+            if(ballx > 650)
+            {
+                ballxd = -ballxd;
+            }
+
+            repaint();
+       }
     }
     public void mouseDragged(MouseEvent e) {
     }
