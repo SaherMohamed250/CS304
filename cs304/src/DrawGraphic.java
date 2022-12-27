@@ -60,6 +60,26 @@ public class DrawGraphic extends JPanel implements KeyListener, ActionListener ,
         g4.setFont(new Font("script",Font.BOLD, 25));
         g4.drawString(""+score, 590,30);
         
+         //won
+        if(totalBricks == 0) {
+            play = false;
+            ballxd = 0;
+            ballyd = 0;
+            g.setColor(Color.RED);
+            g.setFont(new Font("script", Font.BOLD, 30));
+            g.drawString("YOU WON,Score: "+score, 260, 300);
+        }
+
+        //Game Over
+         play = false;
+            ballxd = 0;
+            ballyd = 0;
+            g.setColor(Color.RED);
+            g.setFont(new Font("script",Font.BOLD, 30));
+            g.drawString("YOU LOST,LOOSER , Score: "+score, 130,300);
+
+        
+        
     }
     @Override
     public void keyTyped(KeyEvent e) {
