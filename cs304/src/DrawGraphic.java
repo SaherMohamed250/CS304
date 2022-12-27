@@ -47,12 +47,8 @@ public class DrawGraphic extends JPanel implements KeyListener, ActionListener ,
                 else {
                     bally += b;
                 }
-
-
                 repaint();
             }
-
-
         });
         timer.start();
     }
