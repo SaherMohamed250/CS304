@@ -120,7 +120,7 @@ public class DrawGraphic extends JPanel implements KeyListener, ActionListener ,
                 hockx -= 10;
             }
          }
-          if (e.getKeyCode()==(KeyEvent.VK_P)) {
+          if (e.getKeyCode() == (KeyEvent.VK_P)) {
             play=false;
         }
           repaint();
