@@ -1,9 +1,17 @@
 
-
+import com.sun.opengl.util.FPSAnimator;
+import java.awt.*;
+import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.Scanner;
+import javax.sound.sampled.*;
 import javax.swing.*;
+import javax.media.opengl.*;
+import javax.swing.Timer;
 
 
-public class SimpleJoglApp {
+public class SimpleJoglApp throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 
     public static void main(String[] args) {
         JFrame j = new JFrame();
@@ -18,6 +26,14 @@ public class SimpleJoglApp {
         j.addKeyListener(draw);
         j.addMouseMotionListener(draw);
         j.setVisible(true);
+        Scanner scanner = new Scanner(System.in);
+        File file = new File("file_example_WAV_2MG.wav");
+        AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+        Clip clip = AudioSystem.getClip();
+        clip.open(audioStream);
+        clip.start();
+        clip.loop(10000);
+        String response = scanner.next();
     }
 
 }
