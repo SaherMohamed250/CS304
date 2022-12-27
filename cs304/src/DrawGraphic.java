@@ -126,7 +126,32 @@ public class DrawGraphic extends JPanel implements KeyListener, ActionListener, 
                 play = true;
                 hockx -= 10;
             }
-        }
+              //pause key
+               if (e.getKeyCode() == KeyEvent.VK_P) {
+                 play=false ;
+             }
+             //start the game 
+             if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                 play=true ;
+             }  
+            
+        //restart the game       
+        if (e.getKeyCode() == KeyEvent.VK_ENTER)
+	     {          
+	      if(!play)
+		{
+            play = true;
+            ballx = 350;
+            bally= 515;
+            ballxd= -1;
+            ballyd= -1;
+            hockx = 310;
+            score = 0;
+            totalBricks = 21;
+            mapPlay= new Blocks(5, 10);
+				repaint();
+			}
+        }	
 
             repaint();
     }
