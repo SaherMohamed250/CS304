@@ -5,16 +5,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 
 public class DrawGraphic extends JPanel implements KeyListener, ActionListener, MouseMotionListener {
-    private int score = 0;
-    private int ballx,bally,bounds=30;
-    private boolean move_up,move_left,move_dawn,move_right;
+      private int score = 0;
+      private int ballx = 350;
+      private int bally= 515;
+      private int bounds=30;
+  
     private Timer timer;
     private int delay =1;
-    private int hockx =300;
-    private int ballxd = -1;
-    private int ballyd = -4;
+    private int hockx =500;
+    //ball random
+    private int ballxd = -2;
+    private int ballyd = --2;
     private int totalBricks = 40;
     private boolean play=false;
     private Blocks mapPlay;
@@ -47,7 +52,7 @@ public class DrawGraphic extends JPanel implements KeyListener, ActionListener, 
 
         //hock
         g3.setColor(Color.green);
-        g3.fillRect(hockx,550,100,8);
+        g3.fillRect(hockx,550,100,15);
 
         //colored the blocks
         mapPlay.draw((Graphics2D) g, Color.white);
@@ -59,7 +64,7 @@ public class DrawGraphic extends JPanel implements KeyListener, ActionListener, 
         //score
         g4.setColor(Color.white);
         g4.setFont(new Font("script",Font.BOLD, 25));
-        g4.drawString(""+score, 590,30);
+        g4.drawString("Score "+score, 560,30);
 
         //won
         if(totalBricks == 0) {
@@ -78,7 +83,7 @@ public class DrawGraphic extends JPanel implements KeyListener, ActionListener, 
             ballyd = 0;
             g.setColor(Color.RED);
             g.setFont(new Font("script",Font.BOLD, 30));
-            g.drawString("YOU LOST,LOOSER , Score: "+score, 130,300);
+            g.drawString("YOU LOST, Score: "+score, 130,300);
 
 
         }
@@ -123,9 +128,6 @@ public class DrawGraphic extends JPanel implements KeyListener, ActionListener, 
             }
         }
 
-        if (e.getKeyCode() == (KeyEvent.VK_P)) {
-            play=false;
-        }
             repaint();
     }
 
