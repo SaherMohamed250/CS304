@@ -1,24 +1,26 @@
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
-public class DrawGraphic extends JPanel implements KeyListener, ActionListener , MouseMotionListener{
+public class DrawGraphic extends JPanel implements KeyListener, ActionListener {
     private int score = 0;
     private int ballx,bally,bounds=30;
     private boolean move_up,move_left,move_dawn,move_right;
-    private int hockx =200;
-    private boolean play=false;
-    private Blocks mapPlay;
-    private int totalBricks = 40;
-    private int ballxd = -1;
-    private int ballyd = -4;
     private Timer timer;
     private int delay =1;
-    
-    
-    public DrawGraphic() {
-       mapPlay = new Blocks(5, 10);
+    private int hockx =300;
+    private int ballxd = -1;
+    private int ballyd = -4;
+    private int totalBricks = 40;
+    private boolean play=false;
+    private Blocks mapPlay;
+    public DrawGraphic()
+    {
+        mapPlay = new Blocks(5, 10);
         addKeyListener(this);
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
@@ -26,17 +28,16 @@ public class DrawGraphic extends JPanel implements KeyListener, ActionListener ,
         timer.start();
     }
 
-
     public void paint(Graphics g){
-            setBackground(Color.black);
-            Graphics2D g1= (Graphics2D) g;
-            Graphics2D g2 = (Graphics2D) g;
-            Graphics2D g3 = (Graphics2D) g;
+        setBackground(Color.black);
+        Graphics2D g1= (Graphics2D) g;
+        Graphics2D g2 = (Graphics2D) g;
+        Graphics2D g3 = (Graphics2D) g;
         Graphics2D g4 = (Graphics2D) g;
         Graphics2D g5 = (Graphics2D) g;
 
-            super.paint(g1);
-        
+        super.paint(g1);
+
         //Border
         g2.setColor(Color.blue);
         g2.fillRect(0, 0, 3, 592);
@@ -48,7 +49,7 @@ public class DrawGraphic extends JPanel implements KeyListener, ActionListener ,
         g3.setColor(Color.green);
         g3.fillRect(hockx,550,100,8);
 
-        //coloerd the blocks
+        //colored the blocks
         mapPlay.draw((Graphics2D) g, Color.white);
 
         //ball
@@ -59,8 +60,8 @@ public class DrawGraphic extends JPanel implements KeyListener, ActionListener ,
         g4.setColor(Color.white);
         g4.setFont(new Font("script",Font.BOLD, 25));
         g4.drawString(""+score, 590,30);
-        
-         //won
+
+        //won
         if(totalBricks == 0) {
             play = false;
             ballxd = 0;
@@ -71,15 +72,16 @@ public class DrawGraphic extends JPanel implements KeyListener, ActionListener ,
         }
 
         //Game Over
-         play = false;
+        if(bally > 570) {
+            play = false;
             ballxd = 0;
             ballyd = 0;
             g.setColor(Color.RED);
             g.setFont(new Font("script",Font.BOLD, 30));
             g.drawString("YOU LOST,LOOSER , Score: "+score, 130,300);
 
-        
-        
+
+        }
     }
     @Override
     public void keyTyped(KeyEvent e) {
@@ -104,7 +106,7 @@ public class DrawGraphic extends JPanel implements KeyListener, ActionListener ,
 
     @Override
     public void keyPressed(KeyEvent e) {
-            if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             if (hockx > 580) {
                 hockx = 580;
             } else {
@@ -119,12 +121,12 @@ public class DrawGraphic extends JPanel implements KeyListener, ActionListener ,
                 play = true;
                 hockx -= 10;
             }
-         }
-          if (e.getKeyCode() == (KeyEvent.VK_P)) {
+        }
+
+        if (e.getKeyCode() == (KeyEvent.VK_P)) {
             play=false;
         }
-          repaint();
-        
+            repaint();
     }
 
     @Override
@@ -133,9 +135,9 @@ public class DrawGraphic extends JPanel implements KeyListener, ActionListener ,
 
     @Override
     public void actionPerformed(ActionEvent e) {
-       timer.start();
-       if (play) {
-                   
+        timer.start();
+        if(play)
+        {
             if(new Rectangle(ballx, bally, 20, 20).intersects(new Rectangle(hockx, 550, 30, 8)))
             {
                 ballyd = -ballyd;
@@ -149,24 +151,32 @@ public class DrawGraphic extends JPanel implements KeyListener, ActionListener ,
             {
                 ballyd = -ballyd;
             }
-           
-           //to show the blocks
-            A:for (int i = 0; i < mapPlay.map.length; i++) {
-                for (int j = 0; j < mapPlay.map[i].length; j++) {
-                    if (mapPlay.map[i][j] > 0) {
-                        
-                        //hide the blocks
+
+            // check map collision with the ball
+            A: for(int i = 0; i<mapPlay.map.length; i++)
+            {
+                for(int j =0; j<mapPlay.map[0].length; j++)
+                {
+                    if(mapPlay.map[i][j] > 0)
+                    {
+                        //scores++;
                         int brickX = j * mapPlay.brickWidth + 80;
                         int brickY = i * mapPlay.brickHeight + 50;
                         int brickWidth = mapPlay.brickWidth;
                         int brickHeight = mapPlay.brickHeight;
-                        Rectangle rect = new Rectangle(brickX, brickY, mapPlay.brickWidth,mapPlay.brickHeight);
-                        Rectangle ballRect = new Rectangle(ballx, bally, mapPlay.brickWidth,mapPlay.brickHeight);
-                        if (ballRect.intersects(rect)) {
+
+                        Rectangle brickRect = new Rectangle(brickX, brickY, brickWidth, brickHeight);
+                        Rectangle ballRect = new Rectangle(ballx, bally, 20, 20);
+
+
+                        if(ballRect.intersects(brickRect))
+                        {
                             mapPlay.setBrickValue(0, i, j);
+                            score+=5;
                             totalBricks--;
-                             // when ball hit right or left of brick
-                            if(ballx + 19 <= ballRect.x || ballx + 1 >= ballRect.x + ballRect.width)
+
+                            // when ball hit right or left of brick
+                            if(ballx + 19 <= brickRect.x || ballx + 1 >= brickRect.x + brickRect.width)
                             {
                                 ballxd = -ballxd;
                             }
@@ -177,11 +187,12 @@ public class DrawGraphic extends JPanel implements KeyListener, ActionListener ,
                             }
 
                             break A;
+                        }
                     }
                 }
             }
-        }
-           ballx += ballxd;
+
+            ballx += ballxd;
             bally += ballyd;
 
             if(ballx < 0)
@@ -198,17 +209,6 @@ public class DrawGraphic extends JPanel implements KeyListener, ActionListener ,
             }
 
             repaint();
-       }
-    }
-    public void mouseDragged(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseMoved(MouseEvent e) {
-        double x = e.getX();
-        Component c = e.getComponent();
-        double width = c.getWidth();
-        hockx = (int) ((x / width) * 580);
-        repaint();
+        }
     }
 }
